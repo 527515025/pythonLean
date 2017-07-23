@@ -22,5 +22,5 @@ with tf.Session() as sess:
 	# 做3次循环
 	for _ in range(3):
 		sess.run(update);
-		# print(state) 是无效的只有用  sess.run 指向才有用  
+		# print(state) 是无效的。一定要把 sess 的指针指向 state 再进行 print 才能得到想要的结果！
 		print(sess.run(state)) 
