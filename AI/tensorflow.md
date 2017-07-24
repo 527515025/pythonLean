@@ -22,6 +22,18 @@ TensorFlow的一个基本的功能，就是支持在线数据不断优化模型�
 TensorFlow 程序使用 tensor 数据结构来代表所有的数据, 计算图中, 操作间传递的数据都是 tensor. 你可以把 TensorFlow tensor 看作是一个 n 维的数组或列表. 一个 tensor 包含一个静态类型 rank, 和 一个 shape. 
 #变量
 Variables for more details. 变量维护图执行过程中的状态信息. 下面的例子演示了如何使用变量实现一个简单的计数器. 
+
+
+#placeholder
+也就是在sess.run()的时候再输入计算需要的值
+
+ placeholder 是 Tensorflow 中的占位符，暂时储存变量.Tensorflow 如果想要从外部传入data, 那就需要用到 tf.placeholder(), 然后以这种形式传输数据 sess.run(***, feed_dict={input: **}).
+ 
+ 需要传入的值放在了feed_dict={} 并一一对应每一个 input. placeholder 与 feed_dict={} 是绑定在一起出现的
+ 
+#激励函数 activation function
+ 激励函数运行时激活神经网络中某一部分神经元，将激活信息向后传入下一层的神经系统。激励函数的实质是非线性方程。 Tensorflow 的神经网络 里面处理较为复杂的问题时都会需要运用激励函数 activation function 。
+ 
 ##分布式TensorFlow
 分布式TensorFlow中ps、worker、in-graph、between-graph、synchronous training和asynchronous training的概念
 
