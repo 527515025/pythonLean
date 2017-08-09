@@ -77,3 +77,14 @@ new_value = tf.add(state, one)
 将 new_value 的值 赋给 state （state＝new_value）
 update = tf.assign(state, new_value)
 ```
+
+
+## 
+池化层
+卷积层
+
+过拟合 drop out
+欠拟合
+
+
+
