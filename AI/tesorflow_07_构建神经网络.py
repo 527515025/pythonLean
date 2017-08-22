@@ -5,6 +5,9 @@ import tensorflow as tf
 
 import numpy as np
 
+import matplotlib.pyplot as plt
+
+
 # 添加神经层的函数def add_layer(),它有四个参数：输入值、输入的大小、输出的大小和激励函数，我们设定默认的激励函数是None。也就是线性函数
 def add_layer(inputs, in_size, out_size, activation_function=None):
 	# 定义权重,尽量是一个随机变量
@@ -66,11 +69,36 @@ sess = tf.Session()
 # 执行init
 sess.run(init)
 
+# 可视化，生成一个图片框
+fig = plt.figure()
+# add_subplot 画连续性的图
+ax = fig.add_subplot(1,1,1)
+# 添加真实的数据，以点的形式 打印出来
+ax.scatter(x_data, y_data)
+# show 后 函数不暂停，能够继续执行
+plt.ion()
+plt.show()
+
+
 # 训练1000步
 for i in range(1000):
 	sess.run(train_step, feed_dict={xs: x_data, ys: y_data})
 	if i%50 == 0:
-		print(sess.run(loss,feed_dict={xs: x_data, ys: y_data} ))
+		# print(sess.run(loss,feed_dict={xs: x_data, ys: y_data} ))
+		# 输出数据
+		try:
+		    # 去除掉图片的lines 的 第一个线
+		    ax.lines.remove(lines[0])
+		except Exception:
+			pass
+		prediction_value=sess.run(prediction, feed_dict={xs: x_data})
+		# 将prediction 的值 plt 上去，以线的形势
+		# x 轴为x_data Y 轴 为prediction_value 颜色为红色，宽度为5
+		lines = ax.plot(x_data, prediction_value, 'r-', lw=5)
+		
+		# 暂停0.1S
+		plt.pause(0.2)
+
 
 
 
