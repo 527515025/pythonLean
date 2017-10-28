@@ -1,4 +1,4 @@
-#encoding:UTF-8 python2.7
+#encoding:UTF-8 python2.7 爬虫糗事百科
 import urllib
 import urllib2
 import re
