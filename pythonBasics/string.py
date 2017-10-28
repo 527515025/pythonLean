@@ -11,3 +11,7 @@ print str + "TEST"  # 输出连接的字符串
 print str[-1]  # 从右向左输出一个字符
 print str[-5:]  # 从右向左第五个字符处输出到结尾
 print str[-5:-2]  #从倒数第五个字符输出到倒数第二个字符
+
+
+str.replace('word','python')
+print str
