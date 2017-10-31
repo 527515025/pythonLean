@@ -29,14 +29,31 @@ def gen_captcha_text_and_image():
 	captcha_image = Image.open(captcha)
 	captcha_image = np.array(captcha_image)
 	return captcha_text, captcha_image
+
+# 生成并保存一张验证码图片
+def saveImage():
+	image = ImageCaptcha()
  
-if __name__ == '__main__':
-	# 测试
+	captcha_text = random_captcha_text()
+	captcha_text = ''.join(captcha_text)
+ 
+	captcha = image.generate(captcha_text)
+	image.write(captcha_text, 'img/'+captcha_text + '.jpg')  # 写到文件
+
+# 展示验证码图片
+def showImage():
 	text, image = gen_captcha_text_and_image()
- 
 	f = plt.figure()
 	ax = f.add_subplot(111)
 	ax.text(0.1, 0.9,text, ha='center', va='center', transform=ax.transAxes)
 	plt.imshow(image)
- 
 	plt.show()
+ 	
+
+if __name__ == '__main__':
+	# 测试 show image
+	# showImage()
+	for m in range(100) :
+		saveImage()
+ 
+	
