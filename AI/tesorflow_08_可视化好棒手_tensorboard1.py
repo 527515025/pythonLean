@@ -71,6 +71,12 @@ writer = tf.summary.FileWriter("/Users/yangyibo/test/logs/",sess.graph)
 sess.run(tf.initialize_all_variables())
 
 
+# 在 /Users/yangyibo/test/ 目录下 执行   这个目录是我门框架加载到的那个文件的路径
+# tensorboard --logdir logs
+
+# 然后 chrome 浏览器打开 http://localhost:6006  
+# 然后选择 graphs tab 就可以了。
+ 
 
 
 
