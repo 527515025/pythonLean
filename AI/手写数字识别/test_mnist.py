@@ -1,20 +1,21 @@
 #!/usr/bin/env python3  
 # -*- coding: utf-8 -*-  
-  
+# 手写数字识别
+# 准确度 0.9135
 import input_data  
 import tensorflow as tf  
   
-#MNIST数据输入  
+#MNIST数据输入  如果没有这个数据则从远端下载
 mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)  
   
-x = tf.placeholder(tf.float32,[None, 784]) #图像输入向量  
+x = tf.placeholder(tf.float32,[None, 784]) #图像输入向量  每个图片有784 （28 ＊28） 个像素点
 W = tf.Variable(tf.zeros([784,10]))  #权重，初始化值为全零  
 b = tf.Variable(tf.zeros([10]))  #偏置，初始化值为全零  
   
 #进行模型计算，y是预测，y_ 是实际  
 y = tf.nn.softmax(tf.matmul(x,W) + b)  
   
-y_ = tf.placeholder("float", [None,10])  
+y_ = tf.placeholder("float", [None,10]) #每个例子有10 个输出
   
 #计算交叉熵  
 cross_entropy = -tf.reduce_sum(y_*tf.log(y))  
