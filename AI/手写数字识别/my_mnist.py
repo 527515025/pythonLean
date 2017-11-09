@@ -48,6 +48,8 @@ prediction = add_layer(xs, 784, 10, activation_function=tf.nn.softmax)
 #分类一般都是 softmax＋ cross_entropy
 cross_entropy = tf.reduce_mean(-tf.reduce_sum(ys * tf.log(prediction),
 reduction_indices=[1]))
+# cross_entropy = -tf.reduce_sum(ys*tf.log(prediction))  
+
 #train方法（最优化算法）采用梯度下降法。  优化器 如何让机器学习提升它的准确率。 tf.train.GradientDescentOptimizer()中的值（学习的效率）通常都小于1
 train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
 sess = tf.Session()
@@ -58,7 +60,7 @@ sess.run(init)
 
 for i in range(1000):
 	#开始train，每次只取100张图片，免得数据太多训练太慢
-	batch_xs, batch_ys = mnist.train.next_batch(100)
+	batch_xs, batch_ys = mnist.train.next_batch(50)
 	sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys})
 	if i % 50 == 0:
 		print(compute_accuracy(
