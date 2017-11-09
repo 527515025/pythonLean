@@ -54,8 +54,8 @@ train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
 sess = tf.Session()
 
 merged = tf.summary.merge_all() # tensorflow >= 0.12
-train_writer = tf.summary.FileWriter("/Users/yangyibo/test/logs/",sess.graph)
-test_writer = tf.summary.FileWriter("/Users/yangyibo/test/test/",sess.graph)
+train_writer = tf.summary.FileWriter("/Users/yangyibo/test/logs/train",sess.graph)
+test_writer = tf.summary.FileWriter("/Users/yangyibo/test/logs/test",sess.graph)
 
 # 初始化变量
 init= tf.global_variables_initializer()
@@ -70,5 +70,5 @@ for i in range(1000):
         test_result = sess.run(merged, feed_dict={xs: mnist.test.images, ys: mnist.test.labels})
         train_writer.add_summary(train_result,i)
         test_writer.add_summary(test_result,i)
-        # print(compute_accuracy(
-        #     mnist.test.images, mnist.test.labels))
+        print(compute_accuracy(
+            mnist.test.images, mnist.test.labels))
