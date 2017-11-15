@@ -66,11 +66,11 @@ test_writer = tf.summary.FileWriter("/Users/yangyibo/test/logs/test",sess.graph)
 init= tf.global_variables_initializer()
 sess.run(init)
 
-for i in range(1000):
+for i in range(3000):
     #开始train，每次只取100张图片，免得数据太多训练太慢
-    batch_xs, batch_ys = mnist.train.next_batch(50)
+    batch_xs, batch_ys = mnist.train.next_batch(100)
     # 丢弃百分之10 的数据
-    sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.9})
+    sess.run(train_step, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 0.5})
     if i % 50 == 0:
         # train_result test_result  train_writer test_writer 用于将结果画在 tensorboard 上
         train_result = sess.run(merged, feed_dict={xs: batch_xs, ys: batch_ys, keep_prob: 1})
