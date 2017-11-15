@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # 手写数字识别
-# 准确度 0.8802
+# 准确度 0.9679
 import 手写数字识别.input_data  
 import tensorflow as tf
 mnist = 手写数字识别.input_data.read_data_sets("手写数字识别/MNIST_data/", one_hot=True)  
