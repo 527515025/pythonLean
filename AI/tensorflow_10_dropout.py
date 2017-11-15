@@ -36,7 +36,7 @@ def compute_accuracy(v_xs,v_ys):
     # 计算我这一组数据中有多少个预测是对的，多少个是错的
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
     # result 是一个百分比，百分比越高，预测越准确
-    result = sess.run(accuracy, feed_dict={xs: v_xs, ys: v_ys})
+    result = sess.run(accuracy, feed_dict={xs: v_xs, ys: v_ys,keep_prob: 1})
     return result 
 
 # 保留数据 keep_prob
