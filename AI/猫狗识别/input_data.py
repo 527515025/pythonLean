@@ -2,9 +2,6 @@ import tensorflow as tf
 import os 
 import numpy as np
 
-# size
-img_width = 160
-img_height = 60
 
 
 def get_files(file_dir):
@@ -83,7 +80,7 @@ CAPACITY = 256
 IMG_W = 208
 IMG_H = 208
 
-train_dir = '/Users/yangyibo/GitWork/pythonLean/AI/验证码识别/img/'
+train_dir = '/Users/yangyibo/GitWork/pythonLean/AI/猫狗识别/img/'
 
 image_list, label_list = get_files(train_dir)
 image_batch, label_batch = get_batch(image_list, label_list, IMG_W, IMG_H, BATCH_SIZE, CAPACITY)
