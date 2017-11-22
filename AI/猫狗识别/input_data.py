@@ -9,12 +9,13 @@ def get_files(file_dir):
 	label_dogs = []
 	for file in os.listdir(file_dir):
 		name = file.split(sep='.')
-		if name[0]=='cat':
+		if 'cat' in name[0]:
 			cats.append(file_dir + file)
 			label_cats.append(0)
 		else:
-			dogs.append(file_dir + file)
-			label_dogs.append(1)
+			if 'dog' in name[0]:
+				dogs.append(file_dir + file)
+				label_dogs.append(1)
 		image_list = np.hstack((cats,dogs))
 		label_list = np.hstack((label_cats,label_dogs))
 			# print('There are %d cats\nThere are %d dogs' %(len(cats), len(dogs)))
@@ -71,7 +72,7 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
   
 
 # test get_batch
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 BATCH_SIZE = 2
 CAPACITY = 256  
 IMG_W = 208
@@ -104,7 +105,7 @@ with tf.Session() as sess:
        print('done!')
    finally:
        coord.request_stop()
-   # coord.join(threads)
-   sess.close()
+   coord.join(threads)
+   # sess.close()
 
 
