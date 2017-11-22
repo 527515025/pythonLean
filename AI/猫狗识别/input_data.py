@@ -2,27 +2,24 @@ import tensorflow as tf
 import os 
 import numpy as np
 
-
-
 def get_files(file_dir):
-	cats = []  
-    label_cats = []  
-    dogs = []  
-    label_dogs = []
-	for file in os.listdir(file_dir):  
-        name = file.split(sep='.')  
-        if name[0]=='cat':  
-            cats.append(file_dir + file)  
-            label_cats.append(0)  
-        else:  
-            dogs.append(file_dir + file)  
-            label_dogs.append(1)  
-    print('There are %d cats\nThere are %d dogs' %(len(cats), len(dogs)))  
-
-	# 多个种类分别的时候需要把多个种类放在一起，打乱顺序,这里不需要
-	image_list = np.hstack(cats,dogs)
-	label_list = np.hstack(label_cats,label_dogs)
-
+	cats = []
+	label_cats = []
+	dogs = []
+	label_dogs = []
+	for file in os.listdir(file_dir):
+		name = file.split(sep='.')
+		if name[0]=='cat':
+			cats.append(file_dir + file)
+			label_cats.append(0)
+		else:
+			dogs.append(file_dir + file)
+			label_dogs.append(1)
+		image_list = np.hstack((cats,dogs))
+		label_list = np.hstack((label_cats,label_dogs))
+			# print('There are %d cats\nThere are %d dogs' %(len(cats), len(dogs)))
+			# 多个种类分别的时候需要把多个种类放在一起，打乱顺序,这里不需要
+     
 	# 把标签和图片都放倒一个 temp 中 然后打乱顺序，然后取出来
 	temp = np.array([image_list,label_list])
 	temp = temp.transpose()
@@ -36,9 +33,9 @@ def get_files(file_dir):
 	return image_list,label_list
 
 # 测试 get_files
-# imgs , label = get_files('/Users/yangyibo/GitWork/pythonLean/AI/验证码识别/img/')
+# imgs , label = get_files('/Users/yangyibo/GitWork/pythonLean/AI/猫狗识别/testImg/')
 # for i in imgs:
-# 	print(i)
+# 	print("img:",i)
 
 # for i in label:
 # 	print('label:',i)
@@ -80,7 +77,7 @@ CAPACITY = 256
 IMG_W = 208
 IMG_H = 208
 
-train_dir = '/Users/yangyibo/GitWork/pythonLean/AI/猫狗识别/img/'
+train_dir = '/Users/yangyibo/GitWork/pythonLean/AI/猫狗识别/testImg/'
 
 image_list, label_list = get_files(train_dir)
 image_batch, label_batch = get_batch(image_list, label_list, IMG_W, IMG_H, BATCH_SIZE, CAPACITY)
@@ -107,8 +104,7 @@ with tf.Session() as sess:
        print('done!')
    finally:
        coord.request_stop()
-   coord.join(threads)
+   # coord.join(threads)
    sess.close()
-
 
 
