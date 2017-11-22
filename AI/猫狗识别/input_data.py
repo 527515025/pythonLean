@@ -73,39 +73,39 @@ def get_batch(image,label,image_W,image_H,batch_size,capacity):
 
 # test get_batch
 # import matplotlib.pyplot as plt
-BATCH_SIZE = 2
-CAPACITY = 256  
-IMG_W = 208
-IMG_H = 208
+# BATCH_SIZE = 2
+# CAPACITY = 256  
+# IMG_W = 208
+# IMG_H = 208
 
-train_dir = '/Users/yangyibo/GitWork/pythonLean/AI/猫狗识别/testImg/'
+# train_dir = '/Users/yangyibo/GitWork/pythonLean/AI/猫狗识别/testImg/'
 
-image_list, label_list = get_files(train_dir)
-image_batch, label_batch = get_batch(image_list, label_list, IMG_W, IMG_H, BATCH_SIZE, CAPACITY)
+# image_list, label_list = get_files(train_dir)
+# image_batch, label_batch = get_batch(image_list, label_list, IMG_W, IMG_H, BATCH_SIZE, CAPACITY)
 
-with tf.Session() as sess:
-   i = 0
-   #  Coordinator  和 start_queue_runners 监控 queue 的状态，不停的入队出队
-   coord = tf.train.Coordinator()
-   threads = tf.train.start_queue_runners(coord=coord)
-   # coord.should_stop() 返回 true 时也就是 数据读完了应该调用 coord.request_stop()
-   try: 
-       while not coord.should_stop() and i<1:
-           # 测试一个步
-           img, label = sess.run([image_batch, label_batch])
+# with tf.Session() as sess:
+#    i = 0
+#    #  Coordinator  和 start_queue_runners 监控 queue 的状态，不停的入队出队
+#    coord = tf.train.Coordinator()
+#    threads = tf.train.start_queue_runners(coord=coord)
+#    # coord.should_stop() 返回 true 时也就是 数据读完了应该调用 coord.request_stop()
+#    try: 
+#        while not coord.should_stop() and i<1:
+#            # 测试一个步
+#            img, label = sess.run([image_batch, label_batch])
            
-           for j in np.arange(BATCH_SIZE):
-               print('label: %d' %label[j])
-               # 因为是个4D 的数据所以第一个为 索引 其他的为冒号就行了
-               plt.imshow(img[j,:,:,:])
-               plt.show()
-           i+=1
-   # 队列中没有数据
-   except tf.errors.OutOfRangeError:
-       print('done!')
-   finally:
-       coord.request_stop()
-   coord.join(threads)
+#            for j in np.arange(BATCH_SIZE):
+#                print('label: %d' %label[j])
+#                # 因为是个4D 的数据所以第一个为 索引 其他的为冒号就行了
+#                plt.imshow(img[j,:,:,:])
+#                plt.show()
+#            i+=1
+#    # 队列中没有数据
+#    except tf.errors.OutOfRangeError:
+#        print('done!')
+#    finally:
+#        coord.request_stop()
+#    coord.join(threads)
    # sess.close()
 
 
