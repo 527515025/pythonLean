@@ -15,3 +15,8 @@ print str[-5:-2]  #从倒数第五个字符输出到倒数第二个字符
 
 str.replace('word','python')
 print str
+
+
+
+if 'ell' in str:
+	print "true"
