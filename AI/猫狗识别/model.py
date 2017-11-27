@@ -1,9 +1,17 @@
 #coding=utf-8  
 import tensorflow as tf  
+# 结构
+# conv1   卷积层 1
+# pooling1_lrn  池化层 1
+# conv2  卷积层 2
+# pooling2_lrn 池化层 2
+# local3 全连接层 1
+# local4 全连接层 2
+# softmax 全连接层 3
 def inference(images, batch_size, n_classes):  
   
-  
-    with tf.variable_scope('conv1') as scope:  
+    with tf.variable_scope('conv1') as scope: 
+     # 卷积盒的为 3*3 的卷积盒，图片厚度是3，输出是16个featuremap
         weights = tf.get_variable('weights',  
                                   shape=[3, 3, 3, 16],  
                                   dtype=tf.float32,  

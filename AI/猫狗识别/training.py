@@ -8,9 +8,9 @@ import model
 N_CLASSES = 2  # 2个输出神经元，［1，0］ 或者 ［0，1］猫和狗的概率
 IMG_W = 208  # 重新定义图片的大小，图片如果过大则训练比较慢  
 IMG_H = 208  
-BATCH_SIZE = 16  #每批数据的大小
+BATCH_SIZE = 32  #每批数据的大小
 CAPACITY = 256  
-MAX_STEP = 12000 # 训练的步数，应当 >= 10000
+MAX_STEP = 15000 # 训练的步数，应当 >= 10000
 learning_rate = 0.0001 # 学习率，建议刚开始的 learning_rate <= 0.0001
   
 
