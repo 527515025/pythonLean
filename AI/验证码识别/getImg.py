@@ -22,5 +22,25 @@ def gci(filepath):
       print(os.path.join(filepath,fi_d))    
 
 
-gci('/Users/yangyibo/GitWork/pythonLean/AI/验证码识别/img/')
+# gci('/Users/yangyibo/GitWork/pythonLean/AI/验证码识别/img/')
 # file_name('/Users/yangyibo/GitWork/pythonLean/AI/验证码识别/img/')
+
+def getlabel(len,str):
+  number = []
+  for item in range(0,len,1):
+    number.append(int(str[item:item+1]))
+  print(number)
+    # item = item+1
+
+
+
+
+number ='1024'
+
+
+getlabel(len(number),number)
+
+
+numlist=[int( number[item: item+1] ) for item in range(0, len(number), 1)]
+print(numlist)  
+
