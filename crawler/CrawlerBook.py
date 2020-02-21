@@ -61,6 +61,28 @@ def haveGzipBook(fo):
 
 
 
+
+def haveAddHeaders():
+    try:
+        url = "https://www.louixxxxxton.cn/zhs-cn/products/nano-speedy-monogram-010575"
+        headers = {'Accept': '*/*',
+               'Accept - Encoding':'gzip, deflate, br',
+               'Accept-Language':'zh-Hans-CN, zh-Hans; q=0.5',
+               'Connection':'Keep-Alive',
+               'Host':'www.louxxxxxton.cn',
+               'Cache-Control':'no-cache',
+               'Postman-Token':'3cd84164-99ae-48d3-986b-ee21fe553d20',
+               'User-Agent':'PostmanRuntime/7.22.0'}           
+        request=urllib.request.Request(url=url,headers=headers)
+        resp =urllib.request.urlopen(request)
+        print(resp.geturl())
+        # 结果转换编码
+        data = resp.read().decode('utf-8')
+        print(data)
+    except Exception as e:
+        print (e)
+
+
 if __name__ == "__main__":
 	# fo = open("/Users/yangyibo/Desktop/1.txt","a+",encoding="utf-8")
 	# haveGzipBook(fo)
